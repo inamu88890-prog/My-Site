@@ -1,6 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html><div class="loader" id="loader">
+  <div class="spinner"></div>
+</div>
 <html lang="en">
-<head>Cricket By Inam
+<head>Cricket By Inam Ul Haq
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cricket Live Stream - Cricket By Inam</title>">
@@ -96,7 +100,16 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
+        }<section class="hero">
+  <div class="hero-content">
+    <h1 data-aos="fade-up">Hi, I'm Inam Ul Haq <span class="highlight">Your Name</span></h1>
+    <p data-aos="fade-up" data-aos-delay="200">Full Stack Developer | Creating amazing web experiences</p>
+    <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-secondary">Get In Touch</a>
+    </div>
+  </div>
+</section>
 
         .hero::before {
             content: '';
@@ -191,7 +204,17 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-        }
+        }.project-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
 
         .match-card::before {
             content: '';
