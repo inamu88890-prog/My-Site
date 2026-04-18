@@ -15,7 +15,114 @@
             box-sizing: border-box;
         }
 
-        body {
+        body {<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket By Inam ul Haq</title>
+    
+    <!-- Popup Blocker CSS + JS -->
+    <style>
+        /* Hide all popups/notifications */
+        .popup, .notification, .toast, .alert, 
+        .modal:not(.custom-modal), .overlay,
+        [class*="popup"], [class*="modal"],
+        [class*="notification"], [class*="toast"] {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+        
+        /* Block modal backdrops */
+        .modal-backdrop, .modal-overlay {
+            display: none !important;
+        }
+        
+        /* Anti-adblock detection */
+        .adblock-message, .adblock-warning {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your website content here -->
+    
+    <!-- Popup Blocker Script -->
+    <script>
+        // 🚫 COMPLETE POPUP BLOCKER
+        (function() {
+            'use strict';
+            
+            // Block ALL popups/notifications
+            window.blockPopups = function() {
+                // 1. Block window.open()
+                const originalOpen = window.open;
+                window.open = function() {
+                    console.log('🚫 Popup blocked!');
+                    return null;
+                };
+                
+                // 2. Block alert/confirm/prompt
+                window.alert = function() { console.log('🚫 Alert blocked!'); return null; };
+                window.confirm = function() { console.log('🚫 Confirm blocked!'); return true; };
+                window.prompt = function() { console.log('🚫 Prompt blocked!'); return null; };
+                
+                // 3. Block new windows/tabs
+                const originalAssign = Location.prototype.assign;
+                Location.prototype.assign = function(url) {
+                    if (url.includes('popup') || url.includes('notification')) {
+                        console.log('🚫 Navigation blocked:', url);
+                        return;
+                    }
+                    return originalAssign.call(this, url);
+                };
+                
+                // 4. Remove existing popups every second
+                setInterval(() => {
+                    const popups = document.querySelectorAll(
+                        '.popup, .modal, .notification, .toast, ' +
+                        '[role="dialog"], [aria-modal="true"], ' +
+                        '.advertisement, .ad-container'
+                    );
+                    popups.forEach(popup => {
+                        popup.style.display = 'none';
+                        popup.remove();
+                    });
+                }, 500);
+                
+                // 5. Block service workers (ads/trackers)
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(registrations => {
+                        registrations.forEach(registration => registration.unregister());
+                    });
+                }
+                
+                // 6. Override Notification API
+                if ('Notification' in window) {
+                    Notification.requestPermission = () => Promise.resolve('denied');
+                    const originalNotify = Notification.prototype.constructor;
+                    Notification.prototype.constructor = function() {
+                        console.log('🚫 Browser notification blocked!');
+                        return null;
+                    };
+                }
+                
+                console.log('✅ Popup blocker activated!');
+            };
+            
+            // Auto-activate on load
+            window.addEventListener('load', blockPopups);
+            document.addEventListener('DOMContentLoaded', blockPopups);
+            
+            // Block before unload
+            window.addEventListener('beforeunload', blockPopups);
+            
+        })();
+    </script>
+</body>
+</html>
             font-family: 'Poppins', sans-serif;
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             color: #fff;
